@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delhi Metro Route Optimizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Delhi Metro Route Optimizer</h1>
+        <div class="controls">
+            <label for="source">Source Station:</label>
+            <select id="source"></select>
+            <label for="destination">Destination Station:</label>
+            <select id="destination"></select>
+            <button onclick="findRoute()">Find Shortest Route</button>
+        </div>
+        <div id="result"></div>
+    </div>
+    <script>
+        fetch('/stations')
+            .then(response => response.json())
+            .then(stations => {
+                populateDropdown('source', stations);
+                populateDropdown('destination', stations);
+            });
+
+        function populateDropdown(id, stations) {
+            const select = document.getElementById(id);
+            stations.forEach(station => {
+                const option = document.createElement('option');
+                option.value = station;
+                option.textContent = station;
+                select.appendChild(option);
+            });
+        }
+
+        async function findRoute() {
+            const source = document.getElementById('source').value;
+            const destination = document.getElementById('destination').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "Finding route...";
+            const response = await fetch('/route', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({source, destination})
+            });
+            const data = await response.json();
+            if (response.ok) {
+                resultDiv.innerHTML = `
+                    <h3>Optimal Route:</h3>
+                    <p>${data.path.join(' → ')}</p>
+                    <p>Total Stations: ${data.path.length}</p>
+                `;
+            } else {
+                resultDiv.innerHTML = `<span style="color:red">${data.error}</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
