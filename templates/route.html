@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delhi Metro Routes & Lines</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: #222;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 220px;
+            background: #273c75;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-top: 2rem;
+            z-index: 100;
+        }
+        .sidebar h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 0 1.5rem 2rem;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .nav-links li {
+            width: 100%;
+        }
+        .nav-links a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.85rem 2rem;
+            font-size: 1.07rem;
+            border-left: 4px solid transparent;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background: #4078c0;
+            border-left: 4px solid #f1c40f;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto 2rem 260px;
+            background: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            padding: 2rem 2.5rem;
+        }
+        h1, h2, h3 {
+            color: #4078c0;
+            margin-top: 1.5rem;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .line-list {
+            margin: 1.5rem 0;
+            padding: 0;
+            list-style: none;
+        }
+        .line-list li {
+            margin-bottom: 1.1rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .line-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7em;
+            width: 0.7em;
+            height: 0.7em;
+            border-radius: 50%;
+            background: #4078c0;
+        }
+        .about-section {
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 0.7rem;
+            text-align: left;
+        }
+        th {
+            background: #eaf1fb;
+        }
+        @media (max-width: 1000px) {
+            .container {
+                margin-left: 0;
+                max-width: 98vw;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                align-items: center;
+                padding: 0.5rem 0;
+            }
+            .sidebar h2 {
+                margin: 0 1rem 0 1rem;
+            }
+            .nav-links {
+                display: flex;
+                flex-direction: row;
+                width: auto;
+                margin-left: 1rem;
+            }
+            .nav-links li {
+                width: auto;
+            }
+            .nav-links a {
+                padding: 0.5rem 1.2rem;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+            .nav-links a:hover, .nav-links a.active {
+                background: #4078c0;
+                border-left: none;
+                border-bottom: 3px solid #f1c40f;
+            }
+        }
+        @media (max-width: 700px) {
+            .container { padding: 1rem 0.5rem; }
+            table, th, td { font-size: 0.97rem; }
+            .sidebar h2 { font-size: 1rem; }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <h2>Delhi Metro</h2>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#lines">Lines</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1 id="about">Delhi Metro: Routes, Lines & System Overview</h1>
+        <div class="about-section">
+            <p>
+                The <strong>Delhi Metro</strong> is India's largest and busiest rapid transit system, serving Delhi and its neighboring cities including Noida, Gurugram, Faridabad, Ghaziabad, and Bahadurgarh. Operated by the Delhi Metro Rail Corporation (DMRC), the network has transformed urban mobility since its inception, providing a safe, efficient, and eco-friendly alternative to road transport.<br><br>
+                Construction began in 1998, and the first line (Red Line, Shahdara–Tis Hazari) opened in December 2002. Since then, the network has expanded rapidly in phases and, as of 2025, covers nearly <strong>400 km</strong> with <strong>over 250 stations</strong> across <strong>10 colour-coded lines</strong>.
+            </p>
+            <p>
+                The system features a mix of underground, elevated, and at-grade stations, with both broad and standard gauge tracks. It is renowned for its punctuality, cleanliness, and high frequency, with trains running every 2–3 minutes during peak hours. The DMRC has also been recognized globally for its environmental initiatives, being the first metro system to earn UN carbon credits for reducing greenhouse gas emissions.
+            </p>
+        </div>
+
+        <h2 id="lines">Delhi Metro Lines (2025)</h2>
+        <ul class="line-list">
+            <li><b>Red Line (Line 1):</b> Rithala – Shaheed Sthal (Ghaziabad) | 34.7 km, 29 stations</li>
+            <li><b>Yellow Line (Line 2):</b> Samaypur Badli – HUDA City Centre (Gurugram) | 49 km, 37 stations</li>
+            <li><b>Blue Line (Line 3/4):</b> Dwarka Sector 21 – Noida City Centre/Vaishali | 56.6 km, 50 stations</li>
+            <li><b>Green Line (Line 5):</b> Inderlok/Kirti Nagar – Brigadier Hoshiyar Singh | 29.6 km, 21 stations</li>
+            <li><b>Violet Line (Line 6):</b> Kashmere Gate – Raja Nahar Singh (Ballabhgarh) | 47 km, 34 stations</li>
+            <li><b>Airport Express (Orange Line):</b> New Delhi – Dwarka Sector 21 | 22.7 km, 6 stations</li>
+            <li><b>Pink Line (Line 7):</b> Majlis Park – Shiv Vihar | 58.6 km, 38 stations (longest line)</li>
+            <li><b>Magenta Line (Line 8):</b> Janakpuri West – Botanical Garden | 38.2 km, 25 stations</li>
+            <li><b>Grey Line (Line 9):</b> Dwarka – Dhansa Bus Stand | 5.2 km, 4 stations (shortest line)</li>
+            <li><b>Rapid Metro (Gurgaon):</b> Sikanderpur – Sector 55-56 | 11.7 km, 11 stations (operated by DMRC)</li>
+        </ul>
+
+        <h3>Key Features</h3>
+<ul>
+    <li>Serves Delhi and NCR cities (Noida, Gurugram, Faridabad, Ghaziabad, Bahadurgarh)</li>
+    <li>10 colour-coded lines, 250+ stations, ~400 km network</li>
+    <li>Mix of underground, elevated, and at-grade sections</li>
+    <li>Peak frequency: every 2–3 minutes</li>
+    <li>Integrated with Rapid Metro Gurgaon and Noida Metro</li>
+    <li>First metro in the world to receive UN carbon credits for reducing greenhouse emissions</li>
+    <li>Automated, driverless trains operational on select corridors</li>
+    <li>Smart card and QR code-based ticketing system for seamless travel</li>
+    <li>Wi-Fi enabled stations and Airport Express Line trains</li>
+    <li>Interchange hubs at major junctions like Kashmere Gate, Rajiv Chowk, Central Secretariat, and Sikanderpur</li>
+</ul>

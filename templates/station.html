@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delhi Metro Stations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: #222;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            background: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            padding: 2rem 2.5rem;
+        }
+        h1 {
+            text-align: center;
+            color: #4078c0;
+            margin-bottom: 2rem;
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .search-box input {
+            width: 350px;
+            padding: 0.7rem 1rem;
+            font-size: 1.1rem;
+            border-radius: 0.7rem;
+            border: 1px solid #c3c3c3;
+            outline: none;
+        }
+        .station-list {
+            max-height: 500px;
+            overflow-y: auto;
+            border-radius: 1rem;
+            border: 1px solid #e0e0e0;
+            background: #f7fafc;
+            padding: 1rem 1.5rem;
+        }
+        .line-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            color: #4078c0;
+        }
+        ul.stations {
+            list-style: none;
+            padding: 0;
+            margin: 0.7rem 0 1.2rem 0;
+            columns: 2;
+            column-gap: 2rem;
+        }
+        ul.stations li {
+            padding: 0.35em 0;
+            font-size: 1.05rem;
+            border-bottom: 1px dotted #dbeafe;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 1rem 0.5rem; }
+            ul.stations { columns: 1; }
+            .search-box input { width: 98%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delhi Metro Stations</h1>
+        <div class="search-box">
+            <input type="text" id="stationSearch" placeholder="Search station...">
+        </div>
+        <div class="station-list" id="stationList">
+            <!-- Red Line -->
+            <div class="line-title" style="color:#e74c3c;">Red Line</div>
+            <ul class="stations">
+                <li>Shaheed Sthal (New Bus Adda)</li>
+                <li>Hindon River</li>
+                <li>Arthala</li>
+                <li>Mohan Nagar</li>
+                <li>Shyam Park</li>
+                <li>Major Mohit Sharma</li>
+                <li>Raj Bagh</li>
+                <li>Shaheed Nagar</li>
+                <li>Dilshad Garden</li>
+                <li>Jhilmil</li>
+                <li>Mansarovar Park</li>
+                <li>Shahdara</li>
+                <li>Welcome</li>
+                <li>Seelampur</li>
+                <li>Shastri Park</li>
+                <li>Kashmere Gate</li>
+                <li>Tis Hazari</li>
+                <li>Pul Bangash</li>
+                <li>Pratap Nagar</li>
+                <li>Shastri Nagar</li>
+                <li>Inderlok</li>
+                <li>Kanhaiya Nagar</li>
+                <li>Keshav Puram</li>
+                <li>Netaji Subhash Place</li>
+                <li>Kohat Enclave</li>
+                <li>Pitampura</li>
+                <li>Rohini East</li>
+                <li>Rohini West</li>
+                <li>Rithala</li>
+            </ul>
+            <!-- Yellow Line -->
+            <div class="line-title" style="color:#f1c40f;">Yellow Line</div>
+            <ul class="stations">
+                <li>Samaypur Badli</li>
+                <li>Rohini Sector 18, 19</li>
+                <li>Haiderpur Badli Mor</li>
+                <li>Jahangirpuri</li>
+                <li>Adarsh Nagar</li>
+                <li>Azadpur</li>
+                <li>Model Town</li>
+                <li>GTB Nagar</li>
+                <li>Vishwa Vidyalaya</li>
+                <li>Civil Lines</li>
+                <li>Kashmere Gate</li>
+                <li>Chandni Chowk</li>
+                <li>Chawri Bazar</li>
+                <li>New Delhi</li>
+                <li>Rajiv Chowk</li>
+                <li>Patel Chowk</li>
+                <li>Central Secretariat</li>
+                <li>Udyog Bhawan</li>
+                <li>Lok Kalyan Marg</li>
+                <li>Jor Bagh</li>
+                <li>Dilli Haat INA</li>
+                <li>AIIMS</li>
+                <li>Green Park</li>
+                <li>Hauz Khas</li>
+                <li>Malviya Nagar</li>
+                <li>Saket</li>
+                <li>Qutab Minar</li>
+                <li>Chhatarpur</li>
+                <li>Sultanpur</li>
+                <li>Ghitorni</li>
+                <li>Arjan Garh</li>
+                <li>Guru Dronacharya</li>
+                <li>Sikanderpur</li>
+                <li>MG Road</li>
+                <li>Iffco Chowk</li>
+                <li>HUDA City Centre</li>
+            </ul>
+            <!-- Blue Line (Dwarka - Noida/Vaishali) -->
+            <div class="line-title" style="color:#3498db;">Blue Line</div>
+            <ul class="stations">
+                <li>Dwarka Sector 21</li>
+                <li>Dwarka Sector 8</li>
+                <li>Dwarka Sector 9</li>
+                <li>Dwarka Sector 10</li>
+                <li>Dwarka Sector 11</li>
+                <li>Dwarka Sector 12</li>
+                <li>Dwarka Sector 13</li>
+                <li>Dwarka Sector 14</li>
+                <li>Dwarka</li>
+                <li>Dwarka Mor</li>
+                <li>Nawada</li>
+                <li>Uttam Nagar West</li>
+                <li>Uttam Nagar East</li>
+                <li>Janakpuri West</li>
+                <li>Janakpuri East</li>
+                <li>Tilak Nagar</li>
+                <li>Subhash Nagar</li>
+                <li>Tagore Garden</li>
+                <li>Rajouri Garden</li>
+                <li>Ramesh Nagar</li>
+                <li>Moti Nagar</li>
+                <li>Kirti Nagar</li>
+                <li>Shadipur</li>
+                <li>Patel Nagar</li>
+                <li>Rajendra Place</li>
+                <li>Karol Bagh</li>
+                <li>Jhandewalan</li>
+                <li>R K Ashram Marg</li>
+                <li>Rajiv Chowk</li>
+                <li>Barakhamba Road</li>
+                <li>Mandi House</li>
+                <li>Pragati Maidan</li>
+                <li>Indraprastha</li>
+                <li>Yamuna Bank</li>
+                <li>Akshardham</li>
+                <li>Mayur Vihar-I</li>
+                <li>Mayur Vihar Ext.</li>
+                <li>New Ashok Nagar</li>
+                <li>Noida Sector 15</li>
+                <li>Noida Sector 16</li>
+                <li>Noida Sector 18</li>
+                <li>Botanical Garden</li>
+                <li>Golf Course</li>
+                <li>Noida City Centre</li>
+                <li>Noida Sector 34</li>
+                <li>Noida Sector 52</li>
+                <li>Noida Sector 61</li>
+                <li>Noida Sector 59</li>
+                <li>Noida Sector 62</li>
+                <li>Vaishali</li>
+            </ul>
+            <!-- Violet Line -->
+            <div class="line-title" style="color:#8e44ad;">Violet Line</div>
+            <ul class="stations">
+                <li>Kashmere Gate</li>
+                <li>Lal Quila</li>
+                <li>Jama Masjid</li>
+                <li>Delhi Gate</li>
+                <li>ITO</li>
+                <li>Mandi House</li>
+                <li>Janpath</li>
+                <li>Central Secretariat</li>
+                <li>Khan Market</li>
+                <li>JLN Stadium</li>
+                <li>Jangpura</li>
+                <li>Lajpat Nagar</li>
+                <li>Moolchand</li>
+                <li>Kailash Colony</li>
+                <li>Nehru Place</li>
+                <li>Kalkaji Mandir</li>
+                <li>Govind Puri</li>
+                <li>Harkesh Nagar Okhla</li>
+                <li>Jasola Apollo</li>
+                <li>Sarita Vihar</li>
+                <li>Mohan Estate</li>
+                <li>Tughlakabad</li>
+                <li>Badarpur Border</li>
+                <li>Sarai</li>
+                <li>NHPC Chowk</li>
+                <li>Mewala Maharajpur</li>
+                <li>Sarai</li>
+                <li>Badkhal Mor</li>
+                <li>Old Faridabad</li>
+                <li>Neelam Chowk Ajronda</li>
+                <li>Bata Chowk</li>
+                <li>Escorts Mujesar</li>
+                <li>Raja Nahar Singh (Ballabhgarh)</li>
+            </ul>
+            <!-- Add more lines if needed -->
+        </div>
+    </div>
+    <script>
+        // Simple search filter for stations
+        document.getElementById('stationSearch').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            document.querySelectorAll('.stations').forEach(function(ul) {
+                ul.querySelectorAll('li').forEach(function(li) {
+                    li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
