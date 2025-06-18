@@ -1,60 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Delhi Metro Route Optimizer</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Smart Metro Navigator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #metroMap {
+            height: 400px;
+            width: 80%;
+            margin: 0 auto;
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            z-index: 1;
+        }
+        .station-marker {
+            background-color: #fff;
+            border-radius: 50%;
+            border: 2px solid #333;
+            width: 8px;
+            height: 8px;
+        }
+        .path-highlight {
+            stroke-width: 5;
+            stroke-linecap: round;
+        }
+        .visited-marker {
+            background-color: #ff9;
+            border-radius: 50%;
+            border: 2px solid #333;
+            width: 8px;
+            height: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        .route-summary {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem auto;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 1rem;
+            max-width: 800px;
+        }
+        .route-summary div {
+            text-align: center;
+            min-width: 120px;
+        }
+        .route-summary span {
+            display: block;
+        }
+        .route-summary span:first-child {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #4078c0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Delhi Metro Route Optimizer</h1>
-        <div class="controls">
-            <label for="source">Source Station:</label>
-            <select id="source"></select>
-            <label for="destination">Destination Station:</label>
-            <select id="destination"></select>
-            <button onclick="findRoute()">Find Shortest Route</button>
+    <nav class="sidebar">
+        <div class="sidebar-title">
+            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;"></span>
+            Smart Metro Navigator
         </div>
-        <div id="result"></div>
+        <ul>
+            <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('route_page') }}">Routes</a></li>
+            <li><a href="{{ url_for('station_page') }}">Station</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <main>
+            <h1 class="main-title">Smart Metro Navigator</h1>
+            <div class="station-dropdowns">
+                <select id="sourceDropdown" class="station-select">
+                    <option value="">Select Source Station</option>
+                </select>
+                <select id="destinationDropdown" class="station-select">
+                    <option value="">Select Destination Station</option>
+                </select>
+                <button id="searchBtn" class="find-route-btn">Find Route</button>
+            </div>
+            
+            <div id="metroMap"></div>
+            
+            <div class="route-summary hidden" id="routeSummary">
+                <div>
+                    <span id="totalDistance">0 km</span>
+                    <span>Total Distance</span>
+                </div>
+                <div>
+                    <span id="totalStations">0</span>
+                    <span>Stations</span>
+                </div>
+                <div>
+                    <span id="estimatedFare">₹0</span>
+                    <span>Approx Fare</span>
+                </div>
+            </div>
+            
+            <section class="route-details hidden" id="routeDetails">
+                <div>
+                    <h3>Route Details:</h3>
+                    <div>
+                        <span>From: </span>
+                        <span id="sourceStation"></span>
+                    </div>
+                    <div>
+                        <span>To: </span>
+                        <span id="destStation"></span>
+                    </div>
+                    <h3>Route Path:</h3>
+                    <ol id="stationList"></ol>
+                </div>
+            </section>
+            <div class="no-route hidden" id="noRoute">
+                No route found between the selected stations.
+            </div>
+        </main>
+        <footer>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </footer>
     </div>
-    <script>
-        fetch('/stations')
-            .then(response => response.json())
-            .then(stations => {
-                populateDropdown('source', stations);
-                populateDropdown('destination', stations);
-            });
-
-        function populateDropdown(id, stations) {
-            const select = document.getElementById(id);
-            stations.forEach(station => {
-                const option = document.createElement('option');
-                option.value = station;
-                option.textContent = station;
-                select.appendChild(option);
-            });
-        }
-
-        async function findRoute() {
-            const source = document.getElementById('source').value;
-            const destination = document.getElementById('destination').value;
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = "Finding route...";
-            const response = await fetch('/route', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({source, destination})
-            });
-            const data = await response.json();
-            if (response.ok) {
-                resultDiv.innerHTML = `
-                    <h3>Optimal Route:</h3>
-                    <p>${data.path.join(' → ')}</p>
-                    <p>Total Stations: ${data.path.length}</p>
-                `;
-            } else {
-                resultDiv.innerHTML = `<span style="color:red">${data.error}</span>`;
-            }
-        }
-    </script>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </body>
 </html>
